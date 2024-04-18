@@ -1,8 +1,13 @@
+# SPDX-FileCopyrightText: 2013 The glucometerutils Authors
+#
+# SPDX-License-Identifier: MIT
+
 *.egg-info/
 *.pyc
 *~
 .cache
 .mypy_cache/
+.vscode/
 /MANIFEST
 /dist/
 __pycache__/

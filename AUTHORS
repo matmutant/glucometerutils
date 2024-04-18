@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2013 The glucometerutils Authors
+#
+# SPDX-License-Identifier: MIT
+
 # This is the list of glucometerutils authors for copyright purposes.
 #
 # This does not necessarily list everyone who has contributed code, since in
@@ -7,6 +11,7 @@ Anders Hammarquist
 Andreas Sandberg
 André Caldas
 Arkadiusz Bulski
+Benjamin Schäfer
 Christos Arvanitis
 Diego Elio Pettenò
 Dorian Scholz
@@ -20,5 +25,6 @@ Noel Cragg
 Red Daly
 Ryan Jarvis
 Samuel Martin
+Stefanie Tellex
 Warren Moore
 Wesley T. Honeycutt

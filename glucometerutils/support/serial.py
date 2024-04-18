@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 #
+# SPDX-FileCopyrightText: © 2017 The glucometerutils Authors
 # SPDX-License-Identifier: MIT
 """Common routines and base driver class for serial-based meters.
 """
 
 import logging
-from typing import Optional, Text
+from typing import Optional
 
 import serial
 
@@ -38,29 +39,33 @@ class SerialDevice:
 
     """
 
-    BAUDRATE = None  # type: int
-    DEFAULT_CABLE_ID = None  # type: Text
+    BAUDRATE: Optional[int] = None
+    PARITY: str = serial.PARITY_NONE
+    DEFAULT_CABLE_ID: Optional[str] = None
 
-    TIMEOUT = 1  # type: float
+    TIMEOUT: float = 1
 
-    def __init__(self, device):
-        # type: (Optional[Text]) -> None
+    def __init__(self, device: Optional[str]) -> None:
         assert self.BAUDRATE is not None
 
         if not device and self.DEFAULT_CABLE_ID:
-            logging.info(
-                'No --device parameter provided, looking for default cable.')
-            device = 'hwgrep://' + self.DEFAULT_CABLE_ID
+            logging.info("No --device parameter provided, looking for default cable.")
+            device = "hwgrep://" + self.DEFAULT_CABLE_ID
 
         if not device:
             raise exceptions.CommandLineError(
-                'No --device parameter provided, and no default cable known.')
+                "No --device parameter provided, and no default cable known."
+            )
 
         self.serial_ = serial.serial_for_url(
             device,
             baudrate=self.BAUDRATE,
             timeout=self.TIMEOUT,
             writeTimeout=None,
-            bytesize=serial.EIGHTBITS, parity=serial.PARITY_NONE,
+            bytesize=serial.EIGHTBITS,
+            parity=self.PARITY,
             stopbits=serial.STOPBITS_ONE,
-            xonxoff=False, rtscts=False, dsrdtr=False)
+            xonxoff=False,
+            rtscts=False,
+            dsrdtr=False,
+        )
